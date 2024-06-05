@@ -8,3 +8,7 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+cloudinary:
+  cloud_name: "datji9d5p"
+  api_key: "348622365113146"
+  api_secret: "wxLDIRIsyC8ovBPwLUng846szgU"
