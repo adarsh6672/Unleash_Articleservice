@@ -4,7 +4,6 @@ COPY ./target/article-service.jar app.jar
 
 ENV MYSQL_HOST=unleashDb
 ENV MYSQL_PORT=3306
-ENV MYSQL_DB_NAME=articleservice_db
 ENV MYSQL_USER=user
 ENV MYSQL_PASSWORD=MYSQL_ROOT_PASSWORD
 
