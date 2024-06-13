@@ -1,5 +1,6 @@
 package com.unleash.articleservice.Service;
 
+import com.unleash.articleservice.DTO.FilterDto;
 import com.unleash.articleservice.DTO.FormData;
 import com.unleash.articleservice.Model.Article;
 import com.unleash.articleservice.Model.util.ArticleComparator;
@@ -74,6 +75,8 @@ public class ArticleServiceImp implements ArticleService {
         }
     }
 
+
+
     @Override
     public ResponseEntity<?> deleteArticle(int articleId) {
         try{
@@ -114,6 +117,28 @@ public class ArticleServiceImp implements ArticleService {
         }
         articleRepo.save(article);
         return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public ResponseEntity<?> filterArticles(FilterDto filter) {
+        try {
+            List<Article> articleList = articleRepo.findAll();
+            if (filter.getHeading() != null) {
+                articleList = articleList.stream()
+                        .filter(al -> al.getTitle().toLowerCase().contains(filter.getHeading().toLowerCase()))
+                        .collect(Collectors.toList());
+            }
+            if (filter.getKeywordId() != 0) {
+                articleList = articleList.stream()
+                        .filter(al -> al.getRelatedTo() == (filter.getKeywordId()))
+                        .collect(Collectors.toList());
+            }
+            Collections.sort(articleList,new ArticleComparator());
+            return ResponseEntity.ok().body(articleList);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
     }
 
 

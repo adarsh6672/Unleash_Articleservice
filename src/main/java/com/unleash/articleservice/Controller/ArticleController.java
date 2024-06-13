@@ -1,5 +1,6 @@
 package com.unleash.articleservice.Controller;
 
+import com.unleash.articleservice.DTO.FilterDto;
 import com.unleash.articleservice.DTO.FormData;
 import com.unleash.articleservice.Service.ServiceInterface.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class ArticleController {
     @GetMapping("/get-all-articles")
     public ResponseEntity<?> getAllArticles(){
         return articleService.getAllArticles();
+    }
+
+    @PostMapping("/filter-all-articles")
+    public ResponseEntity<?> filterAllarticles(@RequestBody FilterDto filter){
+        return articleService.filterArticles(filter);
     }
     @DeleteMapping("/delete")
     public ResponseEntity<?>deleteArticle(@RequestParam ("articleId") int articleId){
