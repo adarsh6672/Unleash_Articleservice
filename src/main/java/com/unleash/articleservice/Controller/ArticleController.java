@@ -38,7 +38,7 @@ public class ArticleController {
         return articleService.getAllArticles();
     }
 
-    @PostMapping("/filter-all-articles")
+    @PostMapping("/public/filter-all-articles")
     public ResponseEntity<?> filterAllarticles(@RequestBody FilterDto filter){
         return articleService.filterArticles(filter);
     }
